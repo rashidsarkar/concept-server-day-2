@@ -7,6 +7,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const morgan = require("morgan");
 const port = process.env.PORT || 8000;
+const secretToken = "dsadjkhhdsajkhdas233521dsa21dsada123";
 
 // middleware
 const corsOptions = {
@@ -56,7 +57,7 @@ async function run() {
     app.post("/jwt", async (req, res) => {
       const user = req.body;
       console.log("I need a new jwt", user);
-      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+      const token = jwt.sign(user, secretToken, {
         expiresIn: "365d",
       });
       res
