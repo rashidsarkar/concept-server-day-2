@@ -33,7 +33,10 @@ const verifyToken = async (req, res, next) => {
     next();
   });
 };
-const uri = "mongodb://127.0.0.1:27017";
+// DB_USER=carDoctorUser
+// DB_PASS=foqDPGJE6gqyRizj
+const uri = `mongodb+srv://carDoctorUser:foqDPGJE6gqyRizj@cluster0.ydmxw3q.mongodb.net/?retryWrites=true&w=majority`;
+// const uri = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -41,6 +44,8 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
+
+const usersCollection = client.db("stayVistaDb").collection("users");
 
 async function run() {
   const roomsCollection = client
